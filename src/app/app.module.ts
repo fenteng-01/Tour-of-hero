@@ -10,11 +10,22 @@ import { MessagesComponent } from './messages/messages.component';
 
 import { AppRoutingModule } from './app-routing.module';
 
+import { HttpClientModule } from '@angular/common/http';
+
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService } from './in-memory-data.service';
+
+HttpClientInMemoryWebApiModule.forRoot(
+  InMemoryDataService, { dataEncapsulation: false }
+);
+
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    HttpClientInMemoryWebApiModule
   ],
   declarations: [
     AppComponent,
@@ -23,6 +34,11 @@ import { AppRoutingModule } from './app-routing.module';
     HeroDetailComponent,
     MessagesComponent
   ],
-  bootstrap: [ AppComponent ]
+  bootstrap: [AppComponent],
+  
 })
+
+
+
+
 export class AppModule { }
